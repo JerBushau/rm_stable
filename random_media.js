@@ -1,8 +1,3 @@
-/*
-* Random media script
-* Jeremiah Bushau
-*/
-
 'use strict'
 
 // node.js
@@ -39,12 +34,15 @@ function getUserInput() {
   var userInputPromise = new Promise( function(resolve, reject) {
     prompt.get(schema.catagory, function(err, result) {
       let catagory = result.catagory.trim().toLowerCase();
+
       resolve(catagory);
     });
   })
   .then( function(catagory) {
-    prompt.get(schema.number, function(err, result) {
+    prompt.get(schema.number, function(
+      err, result) {
       let number = result.number;
+
       getAllFiles(catagory, number);
     });
   });
@@ -57,11 +55,13 @@ function getAllFiles(catagory, num) {
   if (catagory === 'movie') {
            // '/path/to/your/movies'
     recursive('/home/arab/Videos/Movies', function(err, files) {
+
      getRandomChoices(validate(files), num);
     });
   } else {
            // '/path/to/your/tv'
     recursive('/home/arab/Videos/TV', function(err, files) {
+
       getRandomChoices(validate(files), num);
     });
   }
@@ -102,7 +102,6 @@ function getRandomChoices(array, num=1) {
 }
 
 function addToPlayList(array) {
-     // 'player'
   spawn('vlc', array, {
     detached: true,
     stdio: 'ignore'
