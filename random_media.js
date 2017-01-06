@@ -54,7 +54,7 @@ function getAllFiles(catagory, num) {
 
   if (catagory === 'movie') {
            // '/path/to/your/movies'
-    recursive('/home/arab/Videos/Movies', function(err, files) {
+    recursive('/home/arab/Videos/movies', function(err, files) {
 
      getRandomChoices(validate(files), num);
     });
