@@ -31,7 +31,7 @@ function getUserInput() {
   prompt.message = '';
   prompt.delimiter = '';
   
-  var userInputPromise = new Promise( function(resolve, reject) {
+  let userInputPromise = new Promise( function(resolve, reject) {
     prompt.get(schema.catagory, function(err, result) {
       let catagory = result.catagory.trim().toLowerCase();
 
@@ -39,8 +39,7 @@ function getUserInput() {
     });
   })
   .then( function(catagory) {
-    prompt.get(schema.number, function(
-      err, result) {
+    prompt.get(schema.number, function(err, result) {
       let number = result.number;
 
       getAllFiles(catagory, number);
@@ -56,7 +55,7 @@ function getAllFiles(catagory, num) {
            // '/path/to/your/movies'
     recursive('/home/arab/Videos/movies', function(err, files) {
 
-     getRandomChoices(validate(files), num);
+      getRandomChoices(validate(files), num);
     });
   } else {
            // '/path/to/your/tv'
@@ -103,9 +102,9 @@ function getRandomChoices(array, num=1) {
 
 function addToPlayList(array) {
   spawn('vlc', array, {
-    detached: true,
-    stdio: 'ignore'
+    detached: true
   });
+  process.exit()
 }
 
 function main() {
